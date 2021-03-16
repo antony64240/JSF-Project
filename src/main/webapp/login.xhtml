@@ -1,0 +1,52 @@
+<html xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<f:view>
+
+	<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<link rel="stylesheet" href="./css/styles.css" />
+<title>Page Login</title>
+	</head>
+
+	<body>
+		<h1 class="login-title">Drive App</h1>
+		<h:form styleClass="form">
+			<div class="form__field">
+				<label for="email" class="form__field__label">Email</label>
+				<h:inputText id="email" value="#{loginBean.email}" required="true"
+					styleClass="form__field__input" p:placeholder="Email"
+					requiredMessage="La saisie du login est obligatoire"
+					validatorMessage="Votre email est invalide">
+					<f:validateRegex
+						pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+				</h:inputText>
+				<h:message for="email" styleClass="form__field__error"></h:message>
+			</div>
+
+			<div class="form__field">
+				<label for="password" class="form__field__label">Mot de
+					passe</label>
+				<h:inputSecret id="password" value="#{loginBean.password}"
+					styleClass="form__field__input" p:placeholder="Mot de passe"
+					required="true"
+					requiredMessage="La saisie du mot de passe est obligatoire"
+					validatorMessage="Votre mot de passe doit contenir au moins 8 caractères">
+					<f:validateLength minimum="8"></f:validateLength>
+				</h:inputSecret>
+				<h:message for="password" styleClass="form__field__error"></h:message>
+			</div>
+			<div class="form__buttons">
+				<h:commandButton action="#{loginBean.redirectRegister}"
+					value="Inscription" styleClass="form__button" immediate="true"></h:commandButton>
+				<h:commandButton action="#{loginBean.actionForm}" value="Connexion"
+					styleClass="form__button"></h:commandButton>
+			</div>
+		</h:form>
+		<h:outputText value = "#{Message.message}" />
+	</body>
+
+</f:view>
+</html>

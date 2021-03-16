@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<h:head>
+	<script type="text/javascript" src="script.js"></script>
+	<title>Liste des locataires</title>
+</h:head>
+<h:body>
+	<h2>Exemple d'intégration JDBC</h2>
+
+	<h:form>
+		<h:dataTable value="#{dossier.getliste()}" var="d"
+			styleClass="Table" headerClass="TableHeader"
+			columnClasses="TableCell"
+			rowClasses="TableLignesPaires,TableLignesImpaires">
+			<h:column>
+				<f:facet name="header">Name</f:facet>#{d.name}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Taille</f:facet>#{d.taille}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Type</f:facet> 
+      			#{d.type}
+      		</h:column>
+			<h:column>
+				<h:commandButton value="Visualiser"
+					action="#{NavigationFile.Submit(d.name)}" rendered="#{d.type=='Dossier'}" />
+			</h:column>
+		</h:dataTable>
+		<h:commandButton value="Retour" action="#{NavigationFile.SubmitRetour}" />
+	</h:form>
+	<button id="disabled" onclick="onClick()">Nouveau dossier</button>
+	<div id="Visible" >	<!--style="visibility: hidden"-->
+		<h:form>
+			Entrer le nouveau nom du dossier : <h:inputText id="newdossier"
+				value="#{GestionFichier.newdossier}" />
+			<h:commandButton value="Valider" action="#{GestionFichier.AddDossier}" />
+		</h:form>
+	</div>
+
+	<h:form enctype="multipart/form-data">
+		<h:inputFile value="#{UploadFile.uploadedFile}">
+		<f:ajax listener="#{UploadFile.upload}"/>
+		</h:inputFile>
+		
+	</h:form>
+	<h:outputText rendered="{dossier.isOk=='ok'}" >Le fichier a bien été importé</h:outputText>
+</h:body>
+</html>

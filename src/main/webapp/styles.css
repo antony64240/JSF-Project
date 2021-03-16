@@ -1,0 +1,26 @@
+.Table{   
+   border-collapse:collapse;
+   border-bottom:1px solid #000000;
+}
+
+.TableHeader{
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;
+   border-top:1px solid #000000;
+   padding:2px;
+}
+
+.TableLignesPaires{
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFF;	
+}
+
+.TableLignesImpaires{
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}
+
+.TableCell {
+	padding: 3px;
+}
